@@ -1,0 +1,10 @@
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.DAL\bin\Debug\MyBookApp.DAL.dll.config
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.DAL\bin\Debug\MyBookApp.DAL.dll
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.DAL\bin\Debug\MyBookApp.DAL.pdb
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.DAL\bin\Debug\EntityFramework.dll
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.DAL\bin\Debug\EntityFramework.SqlServer.dll
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.DAL\bin\Debug\EntityFramework.xml
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.DAL\bin\Debug\EntityFramework.SqlServer.xml
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.DAL\obj\Debug\MyBookApp.DAL.csprojResolveAssemblyReference.cache
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.DAL\obj\Debug\MyBookApp.DAL.dll
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.DAL\obj\Debug\MyBookApp.DAL.pdb

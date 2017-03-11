@@ -1,0 +1,3 @@
+[0302/233120.674:ERROR:process_reader_win.cc(142)] SuspendThread: Отказано в доступе. (0x5)
+[0302/233120.674:ERROR:exception_snapshot_win.cc(87)] thread ID 9860 not found in process
+[0302/233120.674:WARNING:crash_report_exception_handler.cc(60)] ProcessSnapshotWin::Initialize failed

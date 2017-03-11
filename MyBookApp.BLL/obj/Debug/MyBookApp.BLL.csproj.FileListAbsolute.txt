@@ -1,0 +1,14 @@
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.BLL\bin\Debug\MyBookApp.BLL.dll
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.BLL\bin\Debug\MyBookApp.BLL.pdb
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.BLL\bin\Debug\AutoMapper.dll
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.BLL\bin\Debug\MyBookApp.DAL.dll
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.BLL\bin\Debug\Ninject.dll
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.BLL\bin\Debug\EntityFramework.dll
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.BLL\bin\Debug\MyBookApp.DAL.pdb
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.BLL\bin\Debug\MyBookApp.DAL.dll.config
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.BLL\bin\Debug\AutoMapper.xml
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.BLL\bin\Debug\Ninject.xml
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.BLL\bin\Debug\EntityFramework.xml
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.BLL\obj\Debug\MyBookApp.BLL.csprojResolveAssemblyReference.cache
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.BLL\obj\Debug\MyBookApp.BLL.dll
+E:\1C\MyBookApp3\MyBookApp\MyBookApp.BLL\obj\Debug\MyBookApp.BLL.pdb

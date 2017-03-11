@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MyBookApp.WEB.Models.AuthorViewModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <title>Моя книжная полка</title>
+</head>
+<body>
+    <div>
+        <h3>Мои книги</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td><p><b>Фамилия</b></p></td>
+                    <td><p><b>Имя</b></p></td>
+                    <td><p><b>Отчество</b></p></td>
+                    <td><p><b>Дата рождения</b></p></td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var a in Model)
+                {
+                    <tr>
+                        <td><p>@a.LastName</p></td>
+                        <td><p>@a.FirstName</p></td>
+                        <td><p>@a.MiddleName</p></td>
+                        <td><p>@a.BirthDate.ToString("dd.MM.yyyy")</p></td>
+                        <td>
+                            <a href="/Author/Edit/@a.AuthorId" class="btn btn-info" role="button">Редактировать</a>
+                            <a href="/Book/Edit/@a.AuthorId" class="btn btn-info" role="button">Книги</a>
+                            <a href="/Author/Delete/@a.AuthorId" class="btn btn-info" role="button">Удалить</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <a href="/Author/Create/" class="btn btn-info" role="button">Добавить</a>
+
+    </div>
+</body>
+</html>

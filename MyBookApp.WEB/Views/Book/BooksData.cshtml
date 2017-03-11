@@ -1,0 +1,12 @@
+﻿@model IEnumerable<MyBookApp.WEB.Models.BookViewModel>
+
+@foreach (var b in Model)
+{
+    <div class="brd">
+        Название: @b.Name<br>
+        Жанр: @b.Genre.Name<br>
+        К-во страниц: @b.NumberOfPages
+    </div>
+    <br>
+}
+

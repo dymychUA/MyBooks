@@ -1,0 +1,221 @@
+﻿@model MyBookApp.WEB.Models.AuthorViewModel
+@{
+    Layout = null;
+    AjaxOptions options = new AjaxOptions()
+    {
+        UpdateTargetId = "BooksTable",
+        Url = Url.Action("BooksData")
+    };
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/themes/base/jquery-ui.css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/jquery-ui-1.12.1.js")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+
+    <title>Страница писателя</title>
+    
+    <style>
+        .brd {
+            width:      550px;
+            border:     4px double black;
+            background: rgba(51, 199, 255, 0.60);
+            padding:    10px;
+        }
+        .newbrd {
+            width:   550px;
+            border:  4px double red;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<script>
+
+    var newBooks = []
+
+    function AddBook()
+    {
+        var bookName = document.getElementById("BookName");
+        var authorId = document.getElementById("Id");
+        var genre    = document.getElementById("Genres");
+        var num      = document.getElementById("NumberOfPages");
+
+        var errors = false;
+        var textError = "";
+
+        if (bookName.value.trim() == "") {
+            errors = true;
+            textError = " - Укажите название книги! \n";
+        }
+        if (num.value.trim() == "") {
+            errors = true;
+            textError += " - Укажите количество страниц!";
+        }
+
+        if (errors) {
+            alert(textError);
+            return;
+        }
+
+        var bookExist = false;
+        var books = @Html.Raw(Json.Encode(Model.Books));
+
+        for (var i = 0; i < books.length; i++) {
+            if (bookName.value.toUpperCase().trim() == books[i].Name.toUpperCase()) {
+                bookExist = true;
+            }
+        }
+
+        for (var i = 0; i < newBooks.length; i++) {
+            if (bookName.value.toUpperCase().trim() == newBooks[i].Name.toUpperCase()) {
+                bookExist = true;
+            }
+        }
+
+        if (bookExist) {
+            alert("Книга с таким названием уже присутствует!");
+            return;
+        }
+
+        var tab = document.getElementById("BooksTable");
+
+        $('#myModal').modal('hide');
+
+        tab.innerHTML +=
+            "<div class=\"newbrd\">"  +
+            "<label>Название книги: " + bookName.value + "</label><br>" +
+            "<label>Жаннр книги: "    + genre.options[genre.selectedIndex].text + "</label><br>" +
+            "<label>К-во страниц: "   + num.value + "</label><br>" +
+            "</div><br>";
+
+        newBooks.push({
+            BookId:        null,
+            Name:          bookName.value,
+            AuthorId:      authorId.value,
+            GenreId:       genre.value,
+            NumberOfPages: num.value
+        });
+
+        bookName.value = "";
+        num.value = "";
+    }
+
+    function SendNew()
+    {
+        if (newBooks.length == 0){
+            return;
+        }
+
+        $.ajax({
+            type:        "POST",
+            url:         "/Book/NewBooks",
+            data:        JSON.stringify(newBooks),
+            contentType: "application/json; charset=utf-8",
+            dataType:    "html",
+            success:     function (result) { newBooks.length = 0;  $('#BooksTable').html(result); },
+            error:       function (result) { alert("error"); }
+        });
+    };
+
+</script>
+
+<body>
+    @using (Ajax.BeginForm(options))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h3>Книги писателя.</h3>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.Hidden("Id", Model.AuthorId)
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.FirstName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.MiddleName)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.MiddleName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.BirthDate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.BirthDate)
+                </dd>
+            </dl>
+
+            <div class="container">
+                <!-- Trigger the modal with a button -->
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Добавить книгу</button>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Новая книга</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Название книги:    @Html.Editor("BookName")</p>
+                                <p>Жанр произведения: @Html.DropDownList("Genres")</p>
+                                <p>К-во страниц:      @Html.TextBox("NumberOfPages", "", new { @type = "number" })</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Отменить</button>
+                                <input type="button" value="Добавить" onclick="AddBook()" class="btn btn-success">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <div id="BooksTable">
+                @Html.Action("BooksData", new { id = Model.AuthorId })
+            </div>
+
+            <hr />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" name="btn_save" value="Сохранить" onclick="SendNew()" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+
+        <div>
+            @Html.ActionLink("К списку авторов", "Index", "Home")
+        </div>
+    }
+</body>
+</html>
