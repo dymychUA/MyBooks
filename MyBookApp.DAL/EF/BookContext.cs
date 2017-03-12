@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using MyBookApp.DAL.Entities;
-
+using System.Globalization;
 
 namespace MyBookApp.DAL.EF
 {
@@ -29,12 +29,12 @@ namespace MyBookApp.DAL.EF
     {
         protected override void Seed(BookContext db)
         {
-            db.Authors.Add(new Author { AuthorId = 1, LastName = "Чехов", FirstName = "Антон", MiddleName = "Павлович", BirthDate = DateTime.Parse("29-01-1860") });
-            db.Authors.Add(new Author { AuthorId = 2, LastName = "Шевченко", FirstName = "Тарас", MiddleName = "Григорьевич", BirthDate = DateTime.Parse("09-03-1814") });
-            db.Authors.Add(new Author { AuthorId = 3, LastName = "Пушкин", FirstName = "Александр", MiddleName = "Сергеевич", BirthDate = DateTime.Parse("06-06-1799") });
-            db.Authors.Add(new Author { AuthorId = 4, LastName = "Гоголь", FirstName = "Николай", MiddleName = "Васильевич", BirthDate = DateTime.Parse("01-04-1809") });
-            db.Authors.Add(new Author { AuthorId = 5, LastName = "Лукьяненко", FirstName = "Сергей", MiddleName = "Васильевич", BirthDate = DateTime.Parse("11-04-1968") });
-            db.Authors.Add(new Author { AuthorId = 6, LastName = "Шевченко", FirstName = "Андрей", MiddleName = "Николаевич ", BirthDate = DateTime.Parse("29-09-1976") });
+            db.Authors.Add(new Author { AuthorId = 1, LastName = "Чехов",      FirstName = "Антон",     MiddleName = "Павлович",    BirthDate = DateTime.ParseExact("29-01-1860", "dd-MM-yyyy", CultureInfo.InvariantCulture) });
+            db.Authors.Add(new Author { AuthorId = 2, LastName = "Шевченко",   FirstName = "Тарас",     MiddleName = "Григорьевич", BirthDate = DateTime.ParseExact("09-03-1814", "dd-MM-yyyy", CultureInfo.InvariantCulture) });
+            db.Authors.Add(new Author { AuthorId = 3, LastName = "Пушкин",     FirstName = "Александр", MiddleName = "Сергеевич",   BirthDate = DateTime.ParseExact("06-06-1799", "dd-MM-yyyy", CultureInfo.InvariantCulture) });
+            db.Authors.Add(new Author { AuthorId = 4, LastName = "Гоголь",     FirstName = "Николай",   MiddleName = "Васильевич",  BirthDate = DateTime.ParseExact("01-04-1809", "dd-MM-yyyy", CultureInfo.InvariantCulture) });
+            db.Authors.Add(new Author { AuthorId = 5, LastName = "Лукьяненко", FirstName = "Сергей",    MiddleName = "Васильевич",  BirthDate = DateTime.ParseExact("11-04-1968", "dd-MM-yyyy", CultureInfo.InvariantCulture) });
+            db.Authors.Add(new Author { AuthorId = 6, LastName = "Шевченко",   FirstName = "Андрей",    MiddleName = "Николаевич ", BirthDate = DateTime.ParseExact("29-09-1976", "dd-MM-yyyy", CultureInfo.InvariantCulture) });
 
             db.Genres.Add(new Genre { GenreId = 1, Name = "Роман" });
             db.Genres.Add(new Genre { GenreId = 2, Name = "Повесть" });
